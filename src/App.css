@@ -399,7 +399,7 @@
   }
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (pointer: fine) {
   .AnswerOptions-btn:hover {
     background-color: var(--color-emphasys);
     color: var(--light-color);
