@@ -214,6 +214,34 @@
   transition: background-color 0.1s;
 }
 
+.Footer {
+  background-color: var(--color-secondary);
+  padding: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 0 4px;
+
+  border-top: 1px solid #cacaca25;
+  font-size: clamp(0.8rem, 3vw, 0.9rem);
+}
+
+.Footer-link {
+  text-decoration: none;
+  color: inherit;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 4px;
+
+  font-weight: 600;
+
+  transition: color 0.1s;
+}
+
 /* QuizResult */
 .QuizResult {
   background-color: var(--color-secondary);
@@ -403,6 +431,10 @@
   .AnswerOptions-btn:hover {
     background-color: var(--color-emphasys);
     color: var(--light-color);
+  }
+
+  .Footer-link:hover {
+    color: var(--color-emphasys);
   }
 
   .QuizResult-btn:hover,
