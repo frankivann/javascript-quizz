@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.PRO
+const API_URL = import.meta.env.PROD
   ? 'https://frankivann-javascript-quizz.surge.sh'
   : 'http://localhost:5173'
 
