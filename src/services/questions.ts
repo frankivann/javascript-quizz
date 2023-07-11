@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.PROD
-  ? 'https://frankivann-javascript-quizz.surge.sh'
+  ? 'https://javascriptquizz.surge.sh'
   : 'http://localhost:5173'
 
 export async function getQuestions() {
