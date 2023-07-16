@@ -129,20 +129,21 @@
 }
 
 .Code {
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--gray-color);
   font-size: var(--font-size-md);
 }
 
 .ClipBoard {
   border: none;
   padding: 6px 14px;
+  color: var(--light-color);
 
   position: absolute;
   top: 0;
   right: 0;
 
   background-color: #1e1f28;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--gray-color);
   text-transform: capitalize;
   font-size: 0.75rem;
 
@@ -444,7 +445,7 @@
   }
 
   .ClipBoard:hover {
-    background-color: var(--dark-color);
+    background-color: #f7f7f710;
   }
 
   .ModalHeader-btn:hover {
