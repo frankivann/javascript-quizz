@@ -24,6 +24,7 @@
   --color-danger: #e41717;
   --light-color: #eaeaea;
   --dark-color: #00151e;
+  --gray-color: #f7f7f740;
 
   --font-size-md: clamp(0.8rem, 3.8vw, 1rem);
   --box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px,
