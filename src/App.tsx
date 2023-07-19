@@ -6,13 +6,13 @@ import './App.css'
 
 export default function App() {
   return (
-    <>
-      <div className='App'>
+    <div className='App'>
+      <div className='Container'>
         <Header />
         <QuizTitle />
         <QuizGame />
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
