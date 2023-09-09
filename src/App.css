@@ -1,15 +1,19 @@
 .App {
   height: 100dvh;
-  position: relative;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .Container {
-  padding: clamp(18px, 3vw, 25px) clamp(20px, 9vw, 200px);
+  /* padding: clamp(18px, 3vw, 25px) clamp(20px, 9vw, 200px); */
+  padding: clamp(20px, 5vw, 25px);
 
-  flex-grow: 1;
+  width: min(100%, 1300px);
+  margin: auto;
+
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
 }
 
@@ -31,14 +35,12 @@
   gap: 0 2px;
 
   background-color: inherit;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--color-gray-70);
   border-radius: 5px;
 
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: capitalize;
-
-  box-shadow: var(--box-shadow);
 
   transition: background-color 0.1s;
 }
@@ -56,7 +58,7 @@
   align-items: center;
   gap: 10px;
 
-  margin-top: 30px;
+  margin-top: 2rem;
 }
 
 .QuizTitle > h1 {
@@ -133,41 +135,47 @@
 }
 
 .Code {
-  border: 1.5px solid var(--gray-color);
+  border: 1.5px solid var(--color-gray-80);
   font-size: var(--font-size-md);
 }
 
 .ClipBoard {
-  border: none;
-  padding: 6px 14px;
-  color: var(--light-color);
+  color: var(--color-light);
+  background-color: var(--color-dark);
+  display: flex;
+  padding: 6px 12px;
 
   position: absolute;
   top: 0;
   right: 0;
 
-  background-color: #1e1f28;
-  border: 1.5px solid var(--gray-color);
   text-transform: capitalize;
+  margin: 4px 4px 0 0;
   font-size: 0.75rem;
 
+  border: none;
+  border-radius: 0.4em;
+  /* border-top-right-radius: 0.4em; */
+  /* border-top-left-radius: 0.4em; */
+  /* border-bottom-left-radius: 0.4em; */
+  /* border-bottom-right-radius: 0.4em; */
+
   transition: background-color 0.1s;
-  border-top-right-radius: 0.3em;
-  border-bottom-left-radius: 0.3em;
 }
 
 .AnswerOptions {
   display: flex;
   flex-direction: column;
+  gap: 4px 0;
 }
 
 .AnswerOptions-btn {
-  background-color: var(--color-secondary);
+  background-color: var(--color-gray-100);
   color: inherit;
   padding: 10px 0;
 
   border: none;
-  border-bottom: 1px solid var(--border-color);
+  border-radius: 7px;
 
   font-size: var(--font-size-md);
   font-weight: 600;
@@ -179,7 +187,7 @@
 }
 
 .AnswerOptions-btn.Opacity {
-  color: var(--color-muted);
+  color: var(--color-gray-60);
 }
 
 /* Quiz Footer 🍟 */
@@ -187,7 +195,7 @@
   width: inherit;
 }
 
-.QuizFooter-section {
+.QuizFooterResults {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -195,23 +203,31 @@
   gap: 10px 30px;
 }
 
-.QuizFooter-section > strong {
+.QuizFooterResults > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 4px;
+
   font-size: var(--font-size-md);
-  font-weight: 400;
 }
 
-.QuizFooter-div {
+.QuizFooterReset {
   margin-top: 28px;
 }
 
-.QuizFooter-btn {
+.ButtonReset {
   padding: 8px 18px;
   color: inherit;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 4px;
+
   background-color: transparent;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--color-gray-70);
   border-radius: 5px;
-  box-shadow: var(--box-shadow);
 
   font-size: 0.75rem;
   text-transform: capitalize;
@@ -221,7 +237,8 @@
 
 .Footer {
   background-color: var(--color-secondary);
-  padding: 12px;
+  padding: 20px 0;
+  color: var(--color-alternative);
 
   display: flex;
   align-items: center;
@@ -229,60 +246,56 @@
   flex-flow: row wrap;
   gap: 0 4px;
 
-  border-top: 1px solid #cacaca25;
-  font-size: clamp(0.8rem, 3vw, 0.9rem);
+  border-top: 1.5px solid var(--color-gray-80);
+
+  font-size: clamp(0.7rem, 3vw, 0.85rem);
 }
 
 .Footer-link {
   text-decoration: none;
-  color: inherit;
+  color: #b4e1fd;
+
+  background-color: #057dc716;
+  border: 0.1px solid #057dc740;
+  padding: 1px 5px;
+  border-radius: 8px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0 4px;
 
-  font-weight: 600;
-
   transition: color 0.1s;
 }
 
 /* QuizResult */
 .QuizResult {
-  background-color: var(--color-secondary);
-  padding: 50px 20px;
-  width: min(100%, 700px);
-  margin: 0 auto;
-  margin-top: 20px;
-
-  border-radius: 20px;
-  border: 1.5px solid var(--color-emphasys);
-}
-
-.QuizResult > h2 {
-  font-size: clamp(1.2rem, 5.5vw, 2.2rem);
-  font-weight: 600;
-
-  text-align: center;
-}
-
-.QuizResult-section {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  margin: 10px 0;
+  padding: 80px 0;
+  gap: 20px 0;
+}
+
+.QuizResultScore {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-flow: row wrap;
   gap: 10px;
-  font-size: clamp(0.8rem, 3vw, 0.9rem);
 }
 
-.QuizResult-div {
-  margin-top: 20px;
-
+.QuizResultScore > p {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
+
+  font-size: clamp(0.8rem, 5vw, 1.3rem);
+  font-weight: 400;
 }
 
 .QuizResult-btn {
@@ -292,7 +305,6 @@
 
   border: 1.5px solid var(--color-emphasys);
   border-radius: 5px;
-  box-shadow: var(--box-shadow);
 
   font-size: 0.75rem;
   text-transform: capitalize;
@@ -326,17 +338,18 @@
 }
 
 .ModalTitle {
+  color: var(--color-alternative);
   font-size: clamp(1rem, 5vw, 1.8rem);
 }
 
 .ModalHeader-btn {
-  padding: 5px;
+  color: var(--color-danger);
   background-color: transparent;
+  padding: 5px;
 
+  display: flex;
   border: none;
   border-radius: 50%;
-  font-size: 1rem;
-
   transition: background-color 0.1s;
 }
 
@@ -351,7 +364,7 @@
 
 .ModalContentTitle {
   font-size: var(--font-size-md);
-  color: #1fa7dd;
+  color: var(--color-emphasys);
 }
 
 .ModalContentList {
@@ -367,11 +380,12 @@
 
 .ModalFooter-btn {
   padding: 8px 18px;
-  color: inherit;
+  color: var(--color-alternative);
 
   background-color: transparent;
-  border: 1.5px solid var(--border-color);
+  border: 1.5px solid var(--color-gray-70);
   border-radius: 5px;
+  margin-top: 10px;
 
   font-weight: 600;
   font-size: 0.75rem;
@@ -383,45 +397,56 @@
 /* utilities classes 🤟 */
 .Button-danger {
   background-color: var(--color-danger);
-  color: var(--light-color);
+  color: var(--color-light);
 }
 .Button-success {
   background-color: var(--color-success);
-  color: var(--light-color);
+  color: var(--color-light);
 }
 .Loading {
   padding: 10px;
 }
 .Highlight {
-  display: inline-block;
-  background-color: #eaeaea10;
   color: #b4e1fd;
-  padding: 1px 4px;
+  display: inline-block;
+  background-color: #057dc716;
 
-  border-radius: 7px;
-  border: 1px solid #eaeaea10;
   margin-top: 2px;
+  padding: 1px 4px;
+  border-radius: 8px;
+  border: 0.1px solid #057dc740;
 
   font-size: 0.8rem;
   font-weight: 500;
 }
 .light .Highlight {
-  display: inline-block;
-  background-color: #22222210;
-  color: #057dc7;
-  padding: 1px 4px;
+  background-color: #c8dfed;
+  color: #136192;
+  border: 0.1px solid #a1c0d3;
+}
+.light .Footer-link {
+  color: #04304b;
 
-  border-radius: 7px;
-  border: 1px solid #eaeaea10;
-  margin-top: 2px;
-
-  font-size: 0.8rem;
-  font-weight: 600;
+  background-color: #a8c8db;
+  border: 1px solid #4d95c1;
+}
+.IconRefresh {
+  margin-bottom: 2px;
+}
+.QuizResultScore .IconSparkles,
+.QuizResultScore .IconIncorrect {
+  width: clamp(16px, 4vw, 24px);
+  height: clamp(16px, 4vw, 24px);
+}
+.ThisIsFineMeme {
+  width: min(260px, 100%);
+  border-radius: 8px;
+  border: 2px solid var(--color-gray-60);
 }
 
 /* media queries 😪*/
 @media screen and (width < 380px) {
-  .QuizFooter-btn,
+  .ButtonReset,
   .Header-btn {
     width: 100%;
   }
@@ -430,7 +455,11 @@
     display: none;
   }
 
-  .ModalContent > article:nth-child(1) {
+  .ModalContent > article:nth-child(3) {
+    display: none;
+  }
+
+  .FooterCredits {
     display: none;
   }
 }
@@ -438,28 +467,24 @@
 @media (hover: hover) and (pointer: fine) {
   .AnswerOptions-btn:hover {
     background-color: var(--color-emphasys);
-    color: var(--light-color);
-  }
-
-  .Footer-link:hover {
-    color: var(--color-emphasys);
+    color: var(--color-light);
   }
 
   .QuizResult-btn:hover,
-  .QuizFooter-btn:hover,
+  .ButtonReset:hover,
   .Header-btn:hover {
-    background-color: var(--hover-color);
+    background-color: var(--color-gray-90);
   }
 
   .ClipBoard:hover {
-    background-color: #f7f7f710;
+    background-color: var(--color-darkness);
   }
 
   .ModalHeader-btn:hover {
-    background-color: var(--hover-color);
+    background-color: var(--color-gray-90);
   }
 
   .ModalFooter-btn:hover {
-    background-color: var(--hover-color);
+    background-color: var(--color-gray-90);
   }
 }
