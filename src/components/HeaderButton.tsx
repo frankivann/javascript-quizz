@@ -1,24 +1,10 @@
-export const HeaderButton = ({
-  icon = '',
-  text = '',
-}: {
-  icon: string
-  text: string
-}) => {
-  return (
-    <button className='Header-btn'>
-      {icon} <span>/ {text}</span>
-    </button>
-  )
-}
-
 export const HeaderButtonClick = ({
-  icon = '',
-  text = '',
+  icon = '🤍',
+  text = '🖤',
   onClick,
 }: {
-  icon: string
-  text: string
+  icon: React.ReactNode | string
+  text: React.ReactNode | string
   onClick: () => void
 }) => {
   return (
