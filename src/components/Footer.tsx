@@ -9,9 +9,10 @@ export const Footer = () => {
         target='_blank'
         className='Footer-link'
       >
-        @Frankivann
+        @frankivann
         <IconGithub />
       </a>
+      <div className='FooterCredits'>| Créditos a midudev.</div>
     </footer>
   )
 }
