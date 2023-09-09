@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Prism from 'prismjs'
 import '../styles/prism.css'
 import { useStore } from '../store/question'
+import { IconChecked, IconClipBoard } from './Icons'
 
 export const Code = ({
   code = 'code example',
@@ -24,7 +25,7 @@ export const Code = ({
     [code]
   )
 
-  const text = isCopyClipBoard ? '✅ copied' : '📃 copy'
+  const text = isCopyClipBoard ? <IconChecked /> : <IconClipBoard />
 
   return (
     <div className='CodeBlock'>
