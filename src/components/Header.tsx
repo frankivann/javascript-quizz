@@ -3,13 +3,15 @@ import { THEME_MODE } from '../constants'
 import { useStore } from '../store/question'
 import { HeaderButtonClick } from './HeaderButton'
 import { Modal } from './Modal'
+import { IconDarkMode, IconLightMode } from './Icons'
 
 export const Header = () => {
   const themeMode = useStore(state => state.themeMode)
   const toggleThemeMode = useStore(state => state.toggleThemeMode)
   const openModal = useStore(state => state.openModal)
 
-  const icon = themeMode === THEME_MODE.DARK ? '🌚' : '🌝'
+  const iconThemeMode =
+    themeMode === THEME_MODE.DARK ? <IconDarkMode /> : <IconLightMode />
 
   useEffect(
     function () {
@@ -26,14 +28,14 @@ export const Header = () => {
 
   return (
     <>
-      <div className='Header'>
+      <header className='Header'>
         <HeaderButtonClick text='info' icon='🤍' onClick={openModal} />
         <HeaderButtonClick
           onClick={toggleThemeMode}
           text={themeMode}
-          icon={icon}
+          icon={iconThemeMode}
         />
-      </div>
+      </header>
       <Modal />
     </>
   )
