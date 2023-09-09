@@ -1,22 +1,26 @@
 import { useQuestionData } from '../hooks/useQuestionData'
-import { useStore } from '../store/question'
+import { ButtonReset } from './ButtonResetGame'
+import { IconFlag, IconIncorrect, IconSparkles } from './Icons'
 
 export const QuizFooter = () => {
   const { correct, incorrect, unanswer } = useQuestionData()
-  const reset = useStore(state => state.reset)
 
   return (
     <footer className='QuizFooter'>
-      <section className='QuizFooter-section'>
-        <strong>✨ {correct} correctas</strong>
-        <strong>🚩 {incorrect} incorrectas</strong>
-        <strong>🏴 {unanswer} sin responder</strong>
+      <section className='QuizFooterResults'>
+        <span>
+          <IconSparkles /> {correct} correctas
+        </span>
+        <span>
+          <IconIncorrect /> {incorrect} incorrectas
+        </span>
+        <span>
+          <IconFlag /> {unanswer} sin responder
+        </span>
       </section>
 
-      <div className='QuizFooter-div'>
-        <button className='QuizFooter-btn' onClick={reset}>
-          🔁 Restablecer juego
-        </button>
+      <div className='QuizFooterReset'>
+        <ButtonReset />
       </div>
     </footer>
   )

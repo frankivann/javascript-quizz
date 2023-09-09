@@ -2,9 +2,9 @@ import { IconJavaScriptLogo } from './Icons'
 
 export const QuizTitle = () => {
   return (
-    <header className='QuizTitle'>
+    <div className='QuizTitle'>
       <h1>JavaScript Quizz</h1>
       <IconJavaScriptLogo />
-    </header>
+    </div>
   )
 }

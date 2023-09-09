@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useStore } from '../store/question'
+import { IconClose } from './Icons'
 
 export const Modal = () => {
   const questions = useStore(state => state.questions)
@@ -25,7 +26,7 @@ export const Modal = () => {
       <header className='ModalHeader'>
         <h4 className='ModalTitle'>Información</h4>
         <button className='ModalHeader-btn' onClick={closeModal}>
-          ❌
+          <IconClose />
         </button>
       </header>
 
@@ -33,25 +34,20 @@ export const Modal = () => {
         <article>
           <h5 className='ModalContentTitle'>¿Qué es JavaScript Quizz?</h5>
           <p>
-            JavaScript Quizz es un juego que pone a prueba tus cocimientos sobre
-            el lenguaje de programación más popular de mundo,{' '}
-            <span className='Highlight'>JavaScript</span>. El juego consiste en
-            una serie de{' '}
-            <span className='Highlight'>
-              {' '}
-              {questions.length} preguntas en total
-            </span>{' '}
-            donde en cada pregunta se darán{' '}
+            Es un juego que consiste en una serie de{' '}
+            <span className='Highlight'> {questions.length} preguntas</span>{' '}
+            sobre <span className='Highlight'>JavaScript</span>, donde en cada
+            pregunta se darán{' '}
             <span className='Highlight'>4 posibles respuestas</span>, siendo
-            una, y sólamente una, la correcta💫.
+            una, y sólamente una, la correcta😜.
           </p>
         </article>
 
         <article>
           <h5 className='ModalContentTitle'>¿Cómo ganar?</h5>
           <p>
-            A medida que vas respondiendo preguntas, se van sumando tus
-            aciertos. Si al finalizar el juego has respondido correctamente{' '}
+            Cuando respondes, tus aciertos se acumulan. Si al finalizar el juego
+            has respondido correctamente{' '}
             <span className='Highlight'>más de {minimumToWin} preguntas</span>{' '}
             habrás ganado🎉.
           </p>
@@ -61,7 +57,7 @@ export const Modal = () => {
           <h5 className='ModalContentTitle'>Desarrollo del juego</h5>
           <p>
             JavaScript Quizz es un proyecto desarrollado por{' '}
-            <span className='Highlight'>@Frankivann</span> para practicar
+            <span className='Highlight'>@frankivann</span> para practicar
             distintas tecnologías. entre ellas están:
           </p>
           <ul className='ModalContentList'>

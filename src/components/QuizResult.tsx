@@ -1,23 +1,30 @@
 import { useQuestionData } from '../hooks/useQuestionData'
-import { useStore } from '../store/question'
+import { ButtonReset } from './ButtonResetGame'
+import { IconIncorrect, IconSparkles } from './Icons'
 
 export const QuizResult = () => {
-  const reset = useStore(state => state.reset)
   const { correct, incorrect } = useQuestionData()
 
   return (
     <main className='QuizResult'>
-      <h2>Tus resultados</h2>
-      <section className='QuizResult-section'>
-        <strong>✨ {correct} correctas</strong>
-        <strong>🚩 {incorrect} incorrectas</strong>
+      <section className='QuizResultScore'>
+        <p>
+          <IconSparkles /> {correct} correctas
+        </p>
+        <p>
+          <IconIncorrect /> {incorrect} incorrectas
+        </p>
       </section>
 
-      <div className='QuizResult-div'>
-        <button className='QuizResult-btn' onClick={reset}>
-          🔁 Restablecer juego
-        </button>
-      </div>
+      <img
+        width={260}
+        height={145}
+        src='https://midu.dev/images/this-is-fine-404.gif'
+        alt='This is fine meme'
+        className='ThisIsFineMeme'
+      />
+
+      <ButtonReset />
     </main>
   )
 }
