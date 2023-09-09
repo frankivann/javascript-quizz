@@ -7,11 +7,11 @@ import './App.css'
 export default function App() {
   return (
     <div className='App'>
-      <div className='Container'>
+      <section className='Container'>
         <Header />
         <QuizTitle />
         <QuizGame />
-      </div>
+      </section>
       <Footer />
     </div>
   )
