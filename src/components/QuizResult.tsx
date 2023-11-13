@@ -17,8 +17,6 @@ export const QuizResult = () => {
       </section>
 
       <img
-        width={260}
-        height={145}
         src='https://midu.dev/images/this-is-fine-404.gif'
         alt='This is fine meme'
         className='ThisIsFineMeme'
