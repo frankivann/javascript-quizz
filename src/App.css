@@ -286,7 +286,6 @@
 }
 
 .QuizResultScore {
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,7 +299,7 @@
   align-items: center;
   gap: 4px;
 
-  font-size: clamp(0.8rem, 5vw, 1.3rem);
+  font-size: clamp(0.8rem, 5vw, 1.2rem);
   font-weight: 400;
 }
 
@@ -445,7 +444,7 @@
   height: clamp(16px, 4vw, 24px);
 }
 .ThisIsFineMeme {
-  width: min(260px, 100%);
+  width: min(480px, 100%);
   border-radius: 8px;
   border: 2px solid var(--color-gray-60);
 }
