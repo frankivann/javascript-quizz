@@ -1,12 +1,11 @@
 .App {
-  height: 100dvh;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
 .Container {
-  /* padding: clamp(18px, 3vw, 25px) clamp(20px, 9vw, 200px); */
   padding: clamp(20px, 5vw, 25px);
 
   width: min(100%, 1300px);
@@ -155,10 +154,6 @@
 
   border: none;
   border-radius: 0.4em;
-  /* border-top-right-radius: 0.4em; */
-  /* border-top-left-radius: 0.4em; */
-  /* border-bottom-left-radius: 0.4em; */
-  /* border-bottom-right-radius: 0.4em; */
 
   transition: background-color 0.1s;
 }
@@ -235,6 +230,7 @@
   transition: background-color 0.1s;
 }
 
+/* Footer */
 .Footer {
   background-color: var(--color-secondary);
   padding: 20px 0;
@@ -266,6 +262,16 @@
   gap: 0 4px;
 
   transition: color 0.1s;
+}
+
+.link {
+  color: var(--color-alternative);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--color-emphasys);
 }
 
 /* QuizResult */
