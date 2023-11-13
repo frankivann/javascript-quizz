@@ -12,7 +12,16 @@ export const Footer = () => {
         @frankivann
         <IconGithub />
       </a>
-      <div className='FooterCredits'>| Créditos a midudev.</div>
+      <div className='FooterCredits'>
+        | Basado en proyecto de{' '}
+        <a
+          href='https://github.com/midudev/aprendiendo-react/tree/master/projects/13-javascript-quiz-con-zustand'
+          target='_blank'
+          className='link'
+        >
+          midudev.
+        </a>
+      </div>
     </footer>
   )
 }
