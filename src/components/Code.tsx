@@ -6,7 +6,7 @@ import { IconChecked, IconClipBoard } from './Icons'
 
 export const Code = ({
   code = 'code example',
-  lang = 'javas',
+  lang = 'js',
 }: {
   code: string
   lang: string
