@@ -130,4 +130,4 @@ export const useStore = create<State>((set, get) => ({
 // get initial questions.
 getQuestions()
   .then(questions => useStore.setState({ questions }))
-  .catch(error => console.log(error))
+  .catch(error => console.error(error))
