@@ -1,5 +1,5 @@
 const API_URL = import.meta.env.PROD
-  ? 'https://jsquizz.surge.sh'
+  ? window.location.href
   : 'http://localhost:5173'
 
 export async function getQuestions() {
