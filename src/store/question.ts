@@ -88,13 +88,12 @@ export const useStore = create<State>((set, get) => ({
     const areAllQuestionsAnswered = newQuestions.every(
       question => question.userSelectedAnswer != null
     )
+    if (!areAllQuestionsAnswered) return
 
-    if (areAllQuestionsAnswered) {
-      setTimeout(() => {
-        set({ isQuizFinished: true })
-        conffeti()
-      }, 400)
-    }
+    setTimeout(() => {
+      set({ isQuizFinished: true })
+      conffeti()
+    }, 300)
   },
   copyClipBoard: ({ text }) => {
     // check if clipboard api is supported.
