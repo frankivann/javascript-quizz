@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 import { THEME_MODE } from '../constants'
 import { useStore } from '../store/question'
 import { HeaderButtonClick } from './HeaderButton'
-import { Modal } from './Modal'
 import { IconDarkMode, IconLightMode } from './Icons'
+import { Modal } from './Modal'
 
 export const Header = () => {
   const themeMode = useStore(state => state.themeMode)
@@ -15,12 +15,12 @@ export const Header = () => {
 
   useEffect(
     function () {
-      if (themeMode === THEME_MODE.LIGHT) {
-        document.documentElement.classList.add(THEME_MODE.LIGHT)
-        document.documentElement.classList.remove(THEME_MODE.DARK)
+      const rootElement = window.document.documentElement
+
+      if (themeMode === THEME_MODE.DARK) {
+        rootElement.setAttribute('data-theme', THEME_MODE.DARK)
       } else {
-        document.documentElement.classList.add(THEME_MODE.DARK)
-        document.documentElement.classList.remove(THEME_MODE.LIGHT)
+        rootElement.setAttribute('data-theme', THEME_MODE.LIGHT)
       }
     },
     [themeMode]
@@ -29,12 +29,12 @@ export const Header = () => {
   return (
     <>
       <header className='Header'>
-        <HeaderButtonClick text='info' icon='🤍' onClick={openModal} />
         <HeaderButtonClick
           onClick={toggleThemeMode}
           text={themeMode}
           icon={iconThemeMode}
         />
+        <HeaderButtonClick text='info' icon='🤍' onClick={openModal} />
       </header>
       <Modal />
     </>
