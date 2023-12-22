@@ -1,79 +1,67 @@
 import { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useStore } from '../store/question'
-import { IconClose } from './Icons'
 
 export const Modal = () => {
-  const questions = useStore(state => state.questions)
+  const ref = useRef<HTMLDialogElement | null>(null)
   const isOpenModal = useStore(state => state.isOpenModal)
   const closeModal = useStore(state => state.closeModal)
-  const minimumToWin = useStore(state => state.minimunToWin())
-  const ref = useRef<HTMLDialogElement | null>(null)
 
   useEffect(
     function () {
-      if (isOpenModal) {
-        ref.current?.showModal()
-      } else {
-        ref.current?.close()
-      }
+      const modal = ref.current
+      if (!modal) return
+
+      if (isOpenModal) modal.showModal()
+      else modal.close()
     },
     [isOpenModal]
   )
 
-  return createPortal(
-    <dialog ref={ref} className='Modal'>
-      <header className='ModalHeader'>
-        <h4 className='ModalTitle'>Información</h4>
-        <button className='ModalHeader-btn' onClick={closeModal}>
-          <IconClose />
-        </button>
-      </header>
+  const handleClickOutside = (event: React.MouseEvent<HTMLDialogElement>) => {
+    const dialogDimensions = event.currentTarget.getBoundingClientRect()
 
-      <main className='ModalContent'>
-        <article>
-          <h5 className='ModalContentTitle'>¿Qué es JavaScript Quizz?</h5>
-          <p>
-            Es un juego que consiste en una serie de{' '}
-            <span className='Highlight'> {questions.length} preguntas</span>{' '}
-            sobre <span className='Highlight'>JavaScript</span>, donde en cada
-            pregunta se darán{' '}
-            <span className='Highlight'>4 posibles respuestas</span>, siendo
-            una, y sólamente una, la correcta😜.
-          </p>
-        </article>
+    const isClickOutside =
+      event.clientY < dialogDimensions.top ||
+      event.clientY > dialogDimensions.bottom ||
+      event.clientX < dialogDimensions.left ||
+      event.clientX > dialogDimensions.right
 
-        <article>
-          <h5 className='ModalContentTitle'>¿Cómo ganar?</h5>
-          <p>
-            Cuando respondes, tus aciertos se acumulan. Si al finalizar el juego
-            has respondido correctamente{' '}
-            <span className='Highlight'>más de {minimumToWin} preguntas</span>{' '}
-            habrás ganado🎉.
-          </p>
-        </article>
+    if (isClickOutside) closeModal()
+  }
 
-        <article>
-          <h5 className='ModalContentTitle'>Desarrollo del juego</h5>
-          <p>
-            JavaScript Quizz es un proyecto desarrollado por{' '}
-            <span className='Highlight'>@frankivann</span> para practicar
-            distintas tecnologías. entre ellas están:
-          </p>
-          <ul className='ModalContentList'>
-            <li>React</li>
-            <li>Zustand</li>
-            <li>TypeScript</li>
-          </ul>
-        </article>
-      </main>
+  return (
+    <>
+      {isOpenModal &&
+        createPortal(
+          <dialog ref={ref} className='Modal' onClick={handleClickOutside}>
+            <main className='ModalContent'>
+              <article>
+                <h5 className='ModalContentTitle'>¿Qué es JavaScript Quizz?</h5>
+                <p>
+                  Es un juego de preguntas. Tienes 4 posibles respuestas y
+                  solamente 1 es la correcta😜.
+                </p>
+              </article>
 
-      <footer className='ModalFooter'>
-        <button className='ModalFooter-btn' onClick={closeModal}>
-          Cerrar
-        </button>
-      </footer>
-    </dialog>,
-    document.getElementById('portal') as HTMLElement
+              <article>
+                <h5 className='ModalContentTitle'>Desarrollo del juego</h5>
+                <p>
+                  Desarrollado por{' '}
+                  <span className='Highlight'>@frankivann</span>. Basado en
+                  proyecto de <span className='Highlight'>@midudev</span>.
+                </p>
+              </article>
+            </main>
+
+            <footer className='ModalFooter'>
+              <button className='ModalFooter-btn' onClick={closeModal}>
+                Cerrar
+              </button>
+            </footer>
+          </dialog>,
+          document.getElementById('portal') as HTMLElement
+        )}
+    </>
   )
 }
