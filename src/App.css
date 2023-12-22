@@ -1,19 +1,7 @@
 .App {
-  height: 100vh;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-}
-
-.Container {
-  padding: clamp(20px, 5vw, 25px);
-
-  width: min(100%, 1300px);
+  width: min(100%, 1200px);
   margin: auto;
-
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
+  padding: 20px 20px 60px;
 }
 
 /* Header */
@@ -25,26 +13,24 @@
 }
 
 .Header-btn {
-  padding: 8px 18px;
   color: inherit;
+  background-color: inherit;
+  padding: 8px 18px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0 2px;
 
-  background-color: inherit;
-  border: 1.5px solid var(--color-gray-70);
+  border: 1.5px solid var(--gray4);
   border-radius: 5px;
 
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: capitalize;
-
-  transition: background-color 0.1s;
 }
 
-.Header-btn > span {
+.Header-btn span {
   font-size: 0.6rem;
   margin-top: 3px;
 }
@@ -60,24 +46,22 @@
   margin-top: 2rem;
 }
 
-.QuizTitle > h1 {
+.QuizTitle h1 {
   font-size: clamp(1.6rem, 6vw, 2.5rem);
   font-weight: 600;
-
   text-align: center;
 }
 
-.QuizTitle > .JavaScriptLogo {
+.QuizTitle .JavaScriptLogo {
   width: clamp(1.6rem, 5vw, 2.2rem);
   height: clamp(1.6rem, 5vw, 2.2rem);
 }
 
 /* Main */
 .Main {
-  padding: 20px 0;
-
   width: min(100%, 580px);
   margin: 0 auto;
+  padding-top: 20px;
 
   display: flex;
   flex-direction: column;
@@ -86,7 +70,7 @@
   gap: 16px;
 }
 
-/* Pagination ⏭ */
+/* Pagination */
 .QuizPagination {
   display: flex;
   justify-content: center;
@@ -95,8 +79,8 @@
 }
 
 .QuizPagination-btn {
-  color: var(--color-primary);
-  background-color: var(--color-alternative);
+  color: var(--bg);
+  background-color: var(--fg);
   padding: 8px;
 
   display: flex;
@@ -104,18 +88,18 @@
   justify-content: center;
 
   border: none;
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 .QuizPagination-btn:disabled {
   opacity: 0.2;
 }
 
-.QuizPagination > span {
-  font-size: var(--font-size-md);
+.QuizPagination span {
+  font-size: var(--font-md);
 }
 
-/* Quiz 👑 */
+/* Quiz */
 .Quiz {
   width: inherit;
 
@@ -126,7 +110,7 @@
 
 .Question {
   text-wrap: balance;
-  font-size: var(--font-size-md);
+  font-size: var(--font-md);
 }
 
 .CodeBlock {
@@ -134,23 +118,24 @@
 }
 
 .Code {
-  border: 1.5px solid var(--color-gray-80);
-  font-size: var(--font-size-md);
+  border: 1.5px solid var(--gray5);
+  font-size: var(--font-md);
 }
 
 .ClipBoard {
-  color: var(--color-light);
-  background-color: var(--color-dark);
-  display: flex;
-  padding: 6px 12px;
-
+  color: var(--light);
+  background-color: #38464cff;
   position: absolute;
   top: 0;
   right: 0;
 
-  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
   margin: 4px 4px 0 0;
+
   font-size: 0.75rem;
+  text-transform: capitalize;
 
   border: none;
   border-radius: 0.4em;
@@ -165,14 +150,14 @@
 }
 
 .AnswerOptions-btn {
-  background-color: var(--color-gray-100);
   color: inherit;
+  background-color: var(--gray3);
   padding: 10px 0;
 
   border: none;
   border-radius: 7px;
 
-  font-size: var(--font-size-md);
+  font-size: var(--font-md);
   font-weight: 600;
 }
 
@@ -182,10 +167,10 @@
 }
 
 .AnswerOptions-btn.Opacity {
-  color: var(--color-gray-60);
+  color: var(--gray5);
 }
 
-/* Quiz Footer 🍟 */
+/* Quiz Footer */
 .QuizFooter {
   width: inherit;
 }
@@ -198,13 +183,13 @@
   gap: 10px 30px;
 }
 
-.QuizFooterResults > span {
+.QuizFooterResults span {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0 4px;
 
-  font-size: var(--font-size-md);
+  font-size: var(--font-md);
 }
 
 .QuizFooterReset {
@@ -212,16 +197,16 @@
 }
 
 .ButtonReset {
-  padding: 8px 18px;
   color: inherit;
+  background-color: transparent;
+  padding: 8px 18px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0 4px;
 
-  background-color: transparent;
-  border: 1.5px solid var(--color-gray-70);
+  border: 1.5px solid var(--gray4);
   border-radius: 5px;
 
   font-size: 0.75rem;
@@ -230,71 +215,27 @@
   transition: background-color 0.1s;
 }
 
-/* Footer */
-.Footer {
-  background-color: var(--color-secondary);
-  padding: 20px 0;
-  color: var(--color-alternative);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: row wrap;
-  gap: 0 4px;
-
-  border-top: 1.5px solid var(--color-gray-80);
-
-  font-size: clamp(0.7rem, 3vw, 0.85rem);
-}
-
-.Footer-link {
-  text-decoration: none;
-  color: #b4e1fd;
-
-  background-color: #057dc716;
-  border: 0.1px solid #057dc740;
-  padding: 1px 5px;
-  border-radius: 8px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0 4px;
-
-  transition: color 0.1s;
-}
-
-.link {
-  color: var(--color-alternative);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.link:hover {
-  color: var(--color-emphasys);
-}
-
 /* QuizResult */
 .QuizResult {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px 0;
 
   padding: 80px 0;
-  gap: 20px 0;
 }
 
 .QuizResultScore {
   display: flex;
+  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
 
-  flex-flow: row wrap;
   gap: 10px;
 }
 
-.QuizResultScore > p {
+.QuizResultScore p {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -304,11 +245,11 @@
 }
 
 .QuizResult-btn {
-  color: var(--color-alternative);
-  background-color: var(--color-primary);
+  color: var(--fg);
+  background-color: var(--bg);
   padding: 8px 18px;
 
-  border: 1.5px solid var(--color-emphasys);
+  border: 1.5px solid var(--emphasys);
   border-radius: 5px;
 
   font-size: 0.75rem;
@@ -319,61 +260,40 @@
 
 /* modal */
 .Modal {
-  background-color: var(--color-primary);
-  color: var(--color-alternative);
-  width: min(100%, 700px);
+  color: var(--fg);
+  background-color: var(--gray1);
+  width: min(100%, 500px);
 
   margin: auto;
-  padding: 30px 40px;
+  padding: 35px;
 
   border-radius: 10px;
-  border: 1.5px solid var(--color-emphasys);
+  border: 1px solid var(--gray5);
   line-height: 1.6;
 }
 
 .Modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.55);
-}
-
-.ModalHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-flow: row wrap;
-}
-
-.ModalTitle {
-  color: var(--color-alternative);
-  font-size: clamp(1rem, 5vw, 1.8rem);
-}
-
-.ModalHeader-btn {
-  color: var(--color-danger);
-  background-color: transparent;
-  padding: 5px;
-
-  display: flex;
-  border: none;
-  border-radius: 50%;
-  transition: background-color 0.1s;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(1px);
 }
 
 .ModalContent {
   display: flex;
   flex-flow: column nowrap;
-  gap: 10px;
+  gap: 15px;
   margin-top: 10px;
 
   font-size: clamp(0.8rem, 3vw, 0.9rem);
 }
 
 .ModalContentTitle {
-  font-size: var(--font-size-md);
-  color: var(--color-emphasys);
+  color: var(--fg);
+  font-size: var(--font-md);
 }
 
-.ModalContentList {
-  padding-left: 22px;
+.ModalContent p {
+  text-wrap: pretty;
+  color: var(--gray7);
 }
 
 .ModalFooter {
@@ -384,13 +304,13 @@
 }
 
 .ModalFooter-btn {
-  padding: 8px 18px;
-  color: var(--color-alternative);
-
+  color: var(--fg);
   background-color: transparent;
-  border: 1.5px solid var(--color-gray-70);
-  border-radius: 5px;
+  padding: 8px 16px;
   margin-top: 10px;
+
+  border-radius: 5px;
+  border: 1.5px solid var(--gray4);
 
   font-weight: 600;
   font-size: 0.75rem;
@@ -399,42 +319,22 @@
   transition: background-color 0.1s;
 }
 
-/* utilities classes 🤟 */
+/* utilities classes */
 .Button-danger {
-  background-color: var(--color-danger);
-  color: var(--color-light);
+  color: var(--light);
+  background-color: var(--danger);
 }
 .Button-success {
-  background-color: var(--color-success);
-  color: var(--color-light);
+  color: var(--light);
+  background-color: var(--success);
 }
 .Loading {
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20rem;
 }
-.Highlight {
-  color: #b4e1fd;
-  display: inline-block;
-  background-color: #057dc716;
 
-  margin-top: 2px;
-  padding: 1px 4px;
-  border-radius: 8px;
-  border: 0.1px solid #057dc740;
-
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-.light .Highlight {
-  background-color: #c8dfed;
-  color: #136192;
-  border: 0.1px solid #a1c0d3;
-}
-.light .Footer-link {
-  color: #04304b;
-
-  background-color: #a8c8db;
-  border: 1px solid #4d95c1;
-}
 .IconRefresh {
   margin-bottom: 2px;
 }
@@ -446,11 +346,26 @@
 .ThisIsFineMeme {
   width: min(480px, 100%);
   border-radius: 8px;
-  border: 2px solid var(--color-gray-60);
+  border: 2px solid var(--gray5);
+}
+.Highlight {
+  color: #b4e1fd;
+  display: inline-block;
+  background-color: #057dc716;
+
+  margin-top: 2px;
+  padding: 1px 4px;
+  border-radius: 8px;
+
+  font-size: 0.8rem;
+}
+[data-theme='light'] .Highlight {
+  background-color: transparent;
+  color: #136192;
 }
 
-/* media queries 😪*/
-@media screen and (width < 380px) {
+/* media queries*/
+@media screen and (width < 400px) {
   .ButtonReset,
   .Header-btn {
     width: 100%;
@@ -459,37 +374,49 @@
   .ClipBoard {
     display: none;
   }
-
-  .ModalContent > article:nth-child(3) {
-    display: none;
-  }
-
-  .FooterCredits {
-    display: none;
-  }
 }
 
 @media (hover: hover) and (pointer: fine) {
   .AnswerOptions-btn:hover {
-    background-color: var(--color-emphasys);
-    color: var(--color-light);
+    background-color: var(--emphasys);
+    color: var(--light);
   }
 
   .QuizResult-btn:hover,
   .ButtonReset:hover,
   .Header-btn:hover {
-    background-color: var(--color-gray-90);
+    background-color: var(--gray2);
   }
 
   .ClipBoard:hover {
-    background-color: var(--color-darkness);
+    background-color: #28373fff;
   }
 
   .ModalHeader-btn:hover {
-    background-color: var(--color-gray-90);
+    background-color: var(--gray2);
   }
 
   .ModalFooter-btn:hover {
-    background-color: var(--color-gray-90);
+    background-color: var(--gray2);
+  }
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 25px;
+  padding: 3px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--emphasys);
+  --_m: conic-gradient(#0000 10%, #000), linear-gradient(#000 0 0) content-box;
+  -webkit-mask: var(--_m);
+  mask: var(--_m);
+  -webkit-mask-composite: source-out;
+  mask-composite: subtract;
+  animation: l3 1s infinite linear;
+}
+@keyframes l3 {
+  to {
+    transform: rotate(1turn);
   }
 }
