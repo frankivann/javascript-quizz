@@ -2,7 +2,7 @@ import { useStore } from '../store/question'
 
 export const AnswerOptions = () => {
   const selectAnswer = useStore(state => state.selectAnswer)
-  const questionInfo = useStore(state => state.getCurrentQuesitionInfo())
+  const questionInfo = useStore(state => state.getCurrentQuestionInfo())
   const { id, answers, userSelectedAnswer, correctAnswer } = questionInfo
 
   const handleClick = (index: number) => () => {
