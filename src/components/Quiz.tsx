@@ -6,7 +6,7 @@ import { AnswerOptions } from './AnswerOptions'
 
 export const Quiz = () => {
   const questions = useStore(state => state.questions)
-  const questionInfo = useStore(state => state.getCurrentQuesitionInfo())
+  const questionInfo = useStore(state => state.getCurrentQuestionInfo())
 
   // wait until game is fully loaded.
   if (questions.length === 0) return <Loading />
