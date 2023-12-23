@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import Prism from 'prismjs'
-import '../styles/prism.css'
-import { useStore } from '../store/question'
+import { useEffect, useState } from 'react'
 import { IconChecked, IconClipBoard } from './Icons'
+import '../styles/prism.css'
 
 export const Code = ({
   code = 'code example',
@@ -11,11 +10,15 @@ export const Code = ({
   code: string
   lang: string
 }) => {
-  const isCopyClipBoard = useStore(state => state.isCopyClipBoard)
-  const copyClipBoard = useStore(state => state.copyClipBoard)
+  const [isCopyClipboard, setIsCopyClipboard] = useState(false)
 
-  const handleClick = () => {
-    copyClipBoard({ text: code })
+  const handleClick = async () => {
+    const { clipboard } = window.navigator
+    if (!clipboard) return
+
+    await clipboard.writeText(code)
+    setIsCopyClipboard(true)
+    setTimeout(() => setIsCopyClipboard(false), 1000)
   }
 
   useEffect(
@@ -25,7 +28,7 @@ export const Code = ({
     [code]
   )
 
-  const text = isCopyClipBoard ? <IconChecked /> : <IconClipBoard />
+  const text = isCopyClipboard ? <IconChecked /> : <IconClipBoard />
 
   return (
     <div className='CodeBlock'>
