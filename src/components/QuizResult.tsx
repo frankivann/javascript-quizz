@@ -20,6 +20,8 @@ export const QuizResult = () => {
         src='https://midu.dev/images/this-is-fine-404.gif'
         alt='This is fine meme'
         className='ThisIsFineMeme'
+        loading='lazy'
+        decoding='async'
       />
 
       <ButtonReset />
