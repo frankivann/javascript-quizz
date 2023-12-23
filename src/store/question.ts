@@ -1,18 +1,17 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 import { getQuestions } from '../services/questions'
 import { THEME_MODE } from '../constants'
 import { type Question } from '../types'
 import conffeti from 'canvas-confetti'
 
-interface State {
+interface Store {
   questions: Question[]
   currentQuestion: number
   themeMode: THEME_MODE
-  isCopyClipBoard: boolean
-  isOpenModal: boolean
   isQuizFinished: boolean
   toggleThemeMode: () => void
-  getCurrentQuesitionInfo: () => Question
+  getCurrentQuestionInfo: () => Question
   nextQuestion: () => void
   previousQuestion: () => void
   selectAnswer: ({
@@ -22,109 +21,85 @@ interface State {
     questionId: number
     answerIndex: number
   }) => void
-  copyClipBoard: ({ text }: { text: string }) => void
-  openModal: () => void
-  closeModal: () => void
-  minimunToWin: () => number
-  reset: () => void
+  reset: () => Promise<void>
 }
 
-export const useStore = create<State>((set, get) => ({
-  questions: [],
-  currentQuestion: 0,
-  themeMode: window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? THEME_MODE.DARK
-    : THEME_MODE.LIGHT,
-  isCopyClipBoard: false,
-  isOpenModal: false,
-  isQuizFinished: false,
-  toggleThemeMode: () => {
-    const { themeMode } = get()
-    const toggle =
-      themeMode === THEME_MODE.DARK ? THEME_MODE.LIGHT : THEME_MODE.DARK
+export const useStore = create<Store>()(
+  persist(
+    (set, get) => ({
+      questions: [],
+      currentQuestion: 0,
+      themeMode: window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? THEME_MODE.DARK
+        : THEME_MODE.LIGHT,
+      isQuizFinished: false,
+      toggleThemeMode: () => {
+        const { themeMode } = get()
+        const toggle =
+          themeMode === THEME_MODE.DARK ? THEME_MODE.LIGHT : THEME_MODE.DARK
 
-    set({ themeMode: toggle })
-  },
-  getCurrentQuesitionInfo: () => {
-    const { questions, currentQuestion } = get()
-    return questions[currentQuestion]
-  },
-  nextQuestion: () => {
-    const { questions, currentQuestion } = get()
-    const nextQuestion = currentQuestion + 1
+        set({ themeMode: toggle })
+      },
+      getCurrentQuestionInfo: () => {
+        const { questions, currentQuestion } = get()
+        return questions[currentQuestion]
+      },
+      nextQuestion: () => {
+        const { questions, currentQuestion } = get()
+        const nextQuestion = currentQuestion + 1
 
-    if (nextQuestion < questions.length) {
-      set({ currentQuestion: nextQuestion })
-    }
-  },
-  previousQuestion: () => {
-    const { currentQuestion } = get()
-    const previousQuestion = currentQuestion - 1
+        if (nextQuestion < questions.length) {
+          set({ currentQuestion: nextQuestion })
+        }
+      },
+      previousQuestion: () => {
+        const { currentQuestion } = get()
+        const previousQuestion = currentQuestion - 1
 
-    if (previousQuestion >= 0) {
-      set({ currentQuestion: previousQuestion })
-    }
-  },
-  selectAnswer: ({ questionId, answerIndex }) => {
-    const { questions } = get()
-    const newQuestions = structuredClone(questions) as Question[]
+        if (previousQuestion >= 0) {
+          set({ currentQuestion: previousQuestion })
+        }
+      },
+      selectAnswer: ({ questionId, answerIndex }) => {
+        const { questions } = get()
+        const newQuestions = structuredClone(questions) as Question[]
 
-    // find index
-    const questionIndex = newQuestions.findIndex(q => q.id === questionId)
-    // get question info
-    const questionInfo = newQuestions[questionIndex]
-    // check is correct answer
-    const isUserSelectedCorrect = questionInfo.correctAnswer === answerIndex
-    // update question info
-    newQuestions[questionIndex] = {
-      ...questionInfo,
-      userSelectedAnswer: answerIndex,
-      isUserSelectedCorrect,
-    }
+        // find index
+        const questionIndex = newQuestions.findIndex(q => q.id === questionId)
+        // get question info
+        const questionInfo = newQuestions[questionIndex]
+        // check is correct answer
+        const isUserSelectedCorrect = questionInfo.correctAnswer === answerIndex
+        // update question info
+        newQuestions[questionIndex] = {
+          ...questionInfo,
+          userSelectedAnswer: answerIndex,
+          isUserSelectedCorrect,
+        }
 
-    set({ questions: newQuestions })
+        set({ questions: newQuestions })
 
-    // check if the game end
-    const areAllQuestionsAnswered = newQuestions.every(
-      question => question.userSelectedAnswer != null
-    )
-    if (!areAllQuestionsAnswered) return
+        // check if the game end
+        const areAllQuestionsAnswered = newQuestions.every(
+          question => question.userSelectedAnswer != null
+        )
+        if (!areAllQuestionsAnswered) return
 
-    setTimeout(() => {
-      set({ isQuizFinished: true })
-      conffeti()
-    }, 300)
-  },
-  copyClipBoard: ({ text }) => {
-    // check if clipboard api is supported.
-    if (!navigator.clipboard) return
-
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        set({ isCopyClipBoard: true })
-
-        // set to false
         setTimeout(() => {
-          set({ isCopyClipBoard: false })
-        }, 1500)
-      })
-      .catch(error => console.log(error))
-  },
-  openModal: () => set({ isOpenModal: true }),
-  closeModal: () => set({ isOpenModal: false }),
-  minimunToWin: () => {
-    const { questions } = get()
-    return Math.round(questions.length / 1.5)
-  },
-  reset: () => {
-    getQuestions()
-      .then(questions =>
+          set({ isQuizFinished: true })
+          conffeti()
+        }, 300)
+      },
+      reset: async () => {
+        const questions = await getQuestions()
         set({ questions, currentQuestion: 0, isQuizFinished: false })
-      )
-      .catch(error => console.log(error))
-  },
-}))
+      },
+    }),
+    {
+      name: '_JSQUIZZ_GAME_', // name of the item in the storage (must be unique)
+    }
+  )
+)
 
 // get initial questions.
 getQuestions()
