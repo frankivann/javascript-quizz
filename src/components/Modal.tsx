@@ -1,21 +1,23 @@
 import { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { useStore } from '../store/question'
 
-export const Modal = () => {
+interface Props {
+  showModal: boolean
+  closeModal: () => void
+}
+
+export const Modal = ({ showModal, closeModal }: Props) => {
   const ref = useRef<HTMLDialogElement | null>(null)
-  const isOpenModal = useStore(state => state.isOpenModal)
-  const closeModal = useStore(state => state.closeModal)
 
   useEffect(
     function () {
       const modal = ref.current
       if (!modal) return
 
-      if (isOpenModal) modal.showModal()
+      if (showModal) modal.showModal()
       else modal.close()
     },
-    [isOpenModal]
+    [showModal]
   )
 
   const handleClickOutside = (event: React.MouseEvent<HTMLDialogElement>) => {
@@ -32,7 +34,7 @@ export const Modal = () => {
 
   return (
     <>
-      {isOpenModal &&
+      {showModal &&
         createPortal(
           <dialog ref={ref} className='Modal' onClick={handleClickOutside}>
             <main className='ModalContent'>
