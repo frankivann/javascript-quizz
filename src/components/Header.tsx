@@ -4,11 +4,12 @@ import { useStore } from '../store/question'
 import { HeaderButtonClick } from './HeaderButton'
 import { IconDarkMode, IconLightMode } from './Icons'
 import { Modal } from './Modal'
+import { useModal } from '../hooks/useModal'
 
 export const Header = () => {
+  const { openModal, closeModal, showModal } = useModal()
   const themeMode = useStore(state => state.themeMode)
   const toggleThemeMode = useStore(state => state.toggleThemeMode)
-  const openModal = useStore(state => state.openModal)
 
   const iconThemeMode =
     themeMode === THEME_MODE.DARK ? <IconDarkMode /> : <IconLightMode />
@@ -36,7 +37,7 @@ export const Header = () => {
         />
         <HeaderButtonClick text='info' icon='🤍' onClick={openModal} />
       </header>
-      <Modal />
+      <Modal closeModal={closeModal} showModal={showModal} />
     </>
   )
 }
