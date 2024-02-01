@@ -3,4 +3,6 @@
 JavaScript Quizz es un juego que pone a prueba tus conocimientos sobre
 el lenguaje de programación más popular de mundo, JavaScript😜.
 
-![Javascript Quizz image 1](/public/og.jpg)
+basado en proyecto de [midudev](https://github.com/midudev/aprendiendo-react/tree/master/projects/13-javascript-quiz-con-zustand).
+
+![Javascript Quizz](/public/og.jpg)
